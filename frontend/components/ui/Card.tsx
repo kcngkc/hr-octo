@@ -1,0 +1,25 @@
+import React from 'react';
+
+interface CardProps {
+  title?: string;
+  children: React.ReactNode;
+  className?: string;
+  noPadding?: boolean;
+  action?: React.ReactNode;
+}
+
+export const Card: React.FC<CardProps> = ({ title, children, className = '', noPadding = false, action }) => {
+  return (
+    <div className={`bg-white rounded-xl border border-slate-200 shadow-soft overflow-hidden ${className}`}>
+      {(title || action) && (
+        <div className="px-5 py-4 border-b border-slate-100 flex justify-between items-center">
+          {title && <h3 className="font-semibold text-slate-800">{title}</h3>}
+          {action && <div>{action}</div>}
+        </div>
+      )}
+      <div className={noPadding ? '' : 'p-5'}>
+        {children}
+      </div>
+    </div>
+  );
+};
